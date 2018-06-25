@@ -5,14 +5,11 @@ const User = require('./userModel');
 describe('User Model', () => {
     const exampleUser = {
         username: 'Nando',
-        password: '123456',
-        notes: [
-            { title: 'blablabla', body: 'blalbablablabalbabl' }
-        ]
+        password: '123456'
     }
     beforeAll(() => {
         return mongoose
-            .connect('mongodb://localhost/backend')
+            .connect('mongodb://dbuser:Hallo1234!@ds113915.mlab.com:13915/notes')
             .then(() => console.log('\n=== connected to TEST DB ==='))
     })
     afterAll(() => {

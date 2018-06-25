@@ -1,6 +1,7 @@
 const mongoose = require('mongoose');
 const { Schema } = mongoose
 const bcrypt = require('bcrypt');
+const { ObjectId } = Schema.Types
 
 const userModel = new Schema({
     username: {
@@ -11,19 +12,10 @@ const userModel = new Schema({
     },
     password: {
         minlength: 6,
-        type: String
+        type: String,
+        required: true
     },
-    notes: [{
-        title: {
-            type: String,
-            maxlength: 50,
-            required: true
-        },
-        body: {
-            type: String,
-            required: true
-        }
-    }],
+    notes: [{ type: ObjectId, ref: 'Note' }],
     age: {
         type: Number
     },
