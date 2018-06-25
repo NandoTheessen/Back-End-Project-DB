@@ -1,0 +1,20 @@
+const router = require('express').Router();
+const jwt = require('jsonwebtoken');
+const User = require('../models/userModel');
+const mysecret = require('../config');
+
+router.post('/', (req, res) => {
+    const { username, password } = req.body
+
+    username === undefined || password === undefined ? res.status(400).json({ error: 'please provide a username and a password' }) : null
+    if (password.length <= 5) res.status(400).json({ error: 'Please chose a PW longer than 5 characters' })
+
+    User.create(req.body)
+        .then(user => {
+            const token = jwt.sign(user, mysecret)
+            res.status(201).json({ userid: user._id, notes: user.notes, token })
+        })
+        .catch(err => console.log(err))
+})
+
+module.exports = router;
