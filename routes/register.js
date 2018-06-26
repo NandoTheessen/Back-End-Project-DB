@@ -1,7 +1,6 @@
 const router = require('express').Router();
 const jwt = require('jsonwebtoken');
 const User = require('../models/userModel');
-const mysecret = require('../config');
 
 router.post('/', (req, res) => {
     const { username, password } = req.body
@@ -13,7 +12,7 @@ router.post('/', (req, res) => {
         .then(user => {
 
             const payload = { username: user.username }
-            const token = jwt.sign(user, mysecret)
+            const token = jwt.sign(payload, mysecret)
             res.status(201).json({ userid: user._id, notes: user.notes, token })
         })
         .catch(err => console.log(err))

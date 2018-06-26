@@ -1,7 +1,6 @@
 const router = require('express').Router();
 const User = require('../models/userModel');
 const jwt = require('jsonwebtoken');
-const mysecret = require('../config');
 
 router.post('/', (req, res) => {
     const { password, username } = req.body
