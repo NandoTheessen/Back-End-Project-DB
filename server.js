@@ -6,7 +6,7 @@ const registerRoute = require('./routes/register');
 const notesRoute = require('./routes/notes');
 const mongoose = require('mongoose');
 const server = express()
-const port = process.env.PORT || 5000;
+const PORT = process.env.PORT || 5000;
 
 
 
@@ -27,8 +27,8 @@ mongoose
     .then(() => console.log('connected to production database'))
     .catch(() => console.log('error connecting to production database'))
 
-server.listen(port, () => {
-    console.log(`Magic happening on port ${port}`);
+server.listen(PORT, () => {
+    console.log(`Magic happening on port ${PORT}`);
 })
 
 module.exports = server;
