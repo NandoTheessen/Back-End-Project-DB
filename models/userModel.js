@@ -38,4 +38,8 @@ userModel.methods.authenticate = function (password) {
     return bcrypt.compare(password, this.password)
 }
 
+userModel.methods.addNote = function (id) {
+    this.notes.push(id)
+}
+
 module.exports = mongoose.model('User', userModel)

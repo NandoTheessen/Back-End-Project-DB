@@ -11,6 +11,8 @@ router.post('/', (req, res) => {
 
     User.create(req.body)
         .then(user => {
+
+            const payload = { username: user.username }
             const token = jwt.sign(user, mysecret)
             res.status(201).json({ userid: user._id, notes: user.notes, token })
         })

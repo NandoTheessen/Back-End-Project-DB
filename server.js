@@ -3,6 +3,7 @@ const cors = require('cors');
 const morgan = require('morgan');
 const loginRoute = require('./routes/login');
 const registerRoute = require('./routes/register');
+const notesRoute = require('./routes/notes');
 const mongoose = require('mongoose');
 const server = express()
 const port = process.env.PORT || 5000;
@@ -18,6 +19,7 @@ server.use(cors({
 }))
 server.use('/api/login', loginRoute)
 server.use('/api/register', registerRoute)
+server.use('/api/notes', notesRoute)
 
 // routes(server);
 mongoose
