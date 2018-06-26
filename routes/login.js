@@ -18,7 +18,7 @@ router.post('/', (req, res) => {
                             const payload = {
                                 username: user.username
                             };
-                            const token = jwt.sign(payload, ENV['mysecret'])
+                            const token = jwt.sign(payload, process.env.mysecret)
                             res.status(200).json({ userid: user._id, notes: user.notes, token })
                         } else {
                             res.status(422).json({ error: 'passwords do not match' })
