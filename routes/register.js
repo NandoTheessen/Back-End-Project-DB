@@ -12,7 +12,7 @@ router.post('/', (req, res) => {
         .then(user => {
 
             const payload = { username: user.username }
-            const token = jwt.sign(payload, mysecret)
+            const token = jwt.sign(payload, ENV['mysecret'])
             res.status(201).json({ userid: user._id, notes: user.notes, token })
         })
         .catch(err => console.log(err))
