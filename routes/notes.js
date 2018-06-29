@@ -20,7 +20,7 @@ router
     })
     .put(authenticated, (req, res) => {
         const { title, body, id } = req.body
-        if (title === unedfined || body === unedfined || id === undefined) res.status(422).json({ error: 'Please include all needed fields' })
+        if (title === undefined || body === undefined || id === undefined) res.status(422).json({ error: 'Please include all needed fields' })
 
         const update = { title: title, body: body }
 
