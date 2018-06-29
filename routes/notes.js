@@ -22,7 +22,7 @@ router
         const { title, body, id } = req.body
         if (title === undefined || body === undefined || id === undefined) res.status(422).json({ error: 'Please include all needed fields' })
 
-        const update = { title: title, body: body }
+        const update = { title, body }
 
         Note.findByIdAndUpdate(id, update, { new: true })
             .then(note => res.status(201).json(note))
@@ -30,7 +30,6 @@ router
     })
 
 router.post('/all', authenticated, (req, res) => {
-    console.log(req.body);
     const { userid } = req.body
     if (userid === undefined) res.status(400)
     Note.find({ userid: userid })
