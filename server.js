@@ -23,7 +23,7 @@ server.use('/api/notes', notesRoute)
 
 // routes(server);
 mongoose
-    .connect('mongodb://dbuser:Hallo1234!@ds113915.mlab.com:13915/notes')
+    .connect(`mongodb://${process.env.dbuser}:${process.env.dbpass}@${process.env.dburl}`)
     .then(() => console.log('connected to production database'))
     .catch(() => console.log('error connecting to production database'))
 
