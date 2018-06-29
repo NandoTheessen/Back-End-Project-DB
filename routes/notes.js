@@ -26,7 +26,7 @@ router
 
         Note.findByIdAndUpdate(id, update, { new: true })
             .then(note => res.status(201).json(note))
-            .catch(err => status(500).json(err))
+            .catch(err => res.status(500).json(err))
     })
 
 router.post('/all', authenticated, (req, res) => {
