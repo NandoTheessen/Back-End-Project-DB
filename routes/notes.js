@@ -22,11 +22,11 @@ router
         const { title, body, id } = req.body
         if (title === unedfined || body === unedfined || id === undefined) res.status(422).json({ error: 'Please include all needed fields' })
 
-        const update = { title, body }
+        const update = { title: title, body: body }
 
         Note.findByIdAndUpdate(id, update, { new: true })
             .then(note => res.status(201).json(note))
-            .catch(err => status(500).json(err.message))
+            .catch(err => status(500).json(err))
     })
 
 router.post('/all', authenticated, (req, res) => {
