@@ -21,7 +21,7 @@ server.use('/api/notes', notesRoute)
 
 // routes(server);
 mongoose
-    // .connect(`mongodb://localhost/notes-test`)
+    // .connect(`mongodb://localhost/notes-tests`)
     // use second statement for production, line 24 is for testing w/ a local db only 
     .connect(`mongodb://${process.env.dbuser}:${process.env.dbpass}@${process.env.dburl}`)
     .then(() => console.log('connected to production database'))
