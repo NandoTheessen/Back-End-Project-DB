@@ -1,6 +1,7 @@
 const router = require('express').Router();
 const User = require('../models/userModel');
 const jwt = require('jsonwebtoken');
+const mySecret = process.env.mysecret || 'aosdjfoasdjif'
 
 router.post('/', (req, res) => {
     const { password, username } = req.body
@@ -18,16 +19,16 @@ router.post('/', (req, res) => {
                             const payload = {
                                 username: user.username
                             };
-                            const token = jwt.sign(payload, process.env.mysecret)
+                            const token = jwt.sign(payload, mySecret)
                             res.status(200).json({ userid: user._id, notes: user.notes, token })
                         } else {
-                            res.status(422).json({ error: 'passwords do not match' })
+                            res.status(400).json({ error: 'PW or Username do not match' })
                         }
                     })
-
+                    .catch(err => res.status(500).json(err))
             }
         })
-        .catch(err => res.status(500).json(err.message))
+        .catch(err => res.status(500))
 })
 
 module.exports = router;

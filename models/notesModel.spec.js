@@ -11,7 +11,7 @@ describe('Notes Model', () => {
 
     beforeAll(() => {
         return mongoose
-            .connect('mongodb://dbuser:Hallo1234!@ds113915.mlab.com:13915/notes')
+            .connect('mongodb://localhost/notes-tests')
             .then(() => console.log('\n=== connected to TEST DB ==='))
     })
     afterAll(() => {

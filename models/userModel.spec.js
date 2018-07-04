@@ -9,7 +9,7 @@ describe('User Model', () => {
     }
     beforeAll(() => {
         return mongoose
-            .connect('mongodb://dbuser:Hallo1234!@ds113915.mlab.com:13915/notes')
+            .connect('mongodb://localhost/notes-tests')
             .then(() => console.log('\n=== connected to TEST DB ==='))
     })
     afterAll(() => {
@@ -25,12 +25,11 @@ describe('User Model', () => {
     })
 
     it('Saves the exampleUser to the database & saves all data', async () => {
-        const users = await User.find({})
-        const username = 'Nando'
+        const user = await User.find({ "username": "peter" })
 
-        expect(users[0]).toHaveProperty('username', username.toLowerCase())
-        expect(users[0]).toHaveProperty('_id')
-        expect(users[0].password).toHaveLength(60)
+        expect(user[0]).toHaveProperty("username", "peter")
+        expect(user[0]).toHaveProperty('_id')
+        expect(user[0].password).toHaveLength(60)
     })
 
     it('returns an error if required data is missing when creating a user', async () => {
